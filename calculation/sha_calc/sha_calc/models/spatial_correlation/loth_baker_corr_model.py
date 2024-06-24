@@ -45,7 +45,7 @@ nugget_corregionalization = np.array(
 )
 
 
-def get_correlations(im_1: str, im_2: str, site_dist: np.ndarray):
+def get_correlations(im_1: str, im_2: str, site_dist: np.ndarray) -> np.ndarray:
     """
     Computes the spatial cross-correlation
     as per the Loth & Baker model

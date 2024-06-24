@@ -45,7 +45,7 @@ class CondLnIMDistributionResult:
     obs_stations: np.ndarray
     obs_series: pd.Series
     obs_stations_mask_df: pd.DataFrame
-    combined_df: pd.DataFrame
+    # combined_df: pd.DataFrame
 
     R: pd.DataFrame
 
@@ -60,8 +60,31 @@ class CondLnIMDistributionResult:
 
 
 def get_nn_obs_site_filter_fn(
+    min_n_obs_sites: int,
     n_obs_sites: int,
 ):
+    """
+    Returns the nearest neighbor observation site
+    filter function
+
+    Parameters
+    ----------
+    min_n_obs_sites: int
+        Minimum number of observation sites
+        to use
+    n_obs_sites: int
+        Number of observation sites to use
+
+    Returns
+    -------
+    callable/None
+        Function that returns the observation site
+        filter for each site of interest
+
+        None if there are not enough
+        observation sites available
+    """
+
     def obs_site_filter(
         hypo_loc: Tuple[float, float],
         station_df: pd.DataFrame,
@@ -73,23 +96,35 @@ def get_nn_obs_site_filter_fn(
         Returns the observation site filter for
         each site of interest using nearest neighbor.
         """
-        # Get observation sites such that minimum number of observations sites is satisfied
-        neigh = NearestNeighbors(
-            n_neighbors=n_obs_sites + 1, radius=150, metric="precomputed", n_jobs=1
-        )
-        neigh.fit(distance_matrix.loc[obs_stations, obs_stations])
-        n_neigh_ind = neigh.kneighbors(
-            distance_matrix.loc[int_stations, obs_stations], return_distance=False
-        )
+        # Not enough observation sites
+        if obs_stations.size < min_n_obs_sites:
+            return None
 
-        # Convert to a mask
-        n_neigh_mask = np.zeros(distance_matrix.shape, dtype=bool)
-        np.put_along_axis(n_neigh_mask, n_neigh_ind, True, axis=1)
+        # Less observation sites than required but more than minimum
+        # i.e. use all available
+        if obs_stations.size <= n_obs_sites:
+            obs_station_mask_df = pd.DataFrame(
+                index=int_stations, columns=obs_stations, data=True
+            )
+        # More than required use nearest neighbor to select
+        else:
+            # Get observation sites such that minimum number of observations sites is satisfied
+            neigh = NearestNeighbors(
+                n_neighbors=n_obs_sites + 1, radius=150, metric="precomputed", n_jobs=1
+            )
+            neigh.fit(distance_matrix.loc[obs_stations, obs_stations])
+            n_neigh_ind = neigh.kneighbors(
+                distance_matrix.loc[int_stations, obs_stations], return_distance=False
+            )
 
-        # Combine & Create dataframe
-        obs_station_mask_df = pd.DataFrame(
-            index=int_stations, columns=obs_stations, data=n_neigh_mask
-        )
+            # Convert to a mask
+            n_neigh_mask = np.zeros((int_stations.size, obs_stations.size), dtype=bool)
+            np.put_along_axis(n_neigh_mask, n_neigh_ind, True, axis=1)
+
+            # Combine & Create dataframe
+            obs_station_mask_df = pd.DataFrame(
+                index=int_stations, columns=obs_stations, data=n_neigh_mask
+            )
 
         # Don't include stations of interest
         int_obs_sites = int_stations[np.isin(int_stations, obs_stations)]
@@ -162,7 +197,7 @@ def get_rmin_obs_site_filter_fn(
 
         # Get observation sites such that minimum number of observations sites is satisfied
         neigh = NearestNeighbors(
-            n_neighbors=min_n_obs_sites, radius=150, metric="precomputed", n_jobs=1
+            n_neighbors=min_n_obs_sites + 1, radius=150, metric="precomputed", n_jobs=1
         )
         neigh.fit(distance_matrix.loc[obs_stations, obs_stations])
         n_neigh_ind = neigh.kneighbors(
@@ -188,6 +223,90 @@ def get_rmin_obs_site_filter_fn(
     return obs_site_filter
 
 
+def get_max_dist_obs_site_filter_fn(
+    max_obs_dist: float,
+    min_n_obs: int
+):
+    def obs_site_filter(
+        hypo_loc: Tuple[float, float],
+        station_df: pd.DataFrame,
+        int_stations: np.ndarray,
+        obs_stations: np.ndarray,
+        distance_matrix: pd.DataFrame,
+    ):
+        """
+        Computes the mask that specifies the relevant
+        observation sites for each site of interest.
+
+        Selects all observation sites within `max_dist`
+        of the site of interest.
+        If there is at least one observation site within
+        `max_dist` then addtionaly records are selected until
+        `min_n_obs` is satisfied using nearest neighbor
+
+        Parameters
+        ----------
+        hypo_loc: pair of floats
+            Hypocenter location
+        station_df: dataframe
+            Dataframe that contains the station
+            locations
+            Must have columns: [lon, lat]
+        int_stations: array of strings
+            Name of the stations of interest
+        obs_stations: array of strings
+            Name of the observation stations
+        distance_matrix: dataframe
+            Distance matrix between all sites
+
+        Returns
+        -------
+        dataframe
+            Dataframe that contains mask of
+            observation sites to use
+            for each site of interest
+
+            Index: sites of interest
+            Columns: observation sites
+        """
+        obs_station_mask_df = pd.DataFrame(
+            index=int_stations,
+            columns=obs_stations,
+            data=False,
+        )
+
+        # Get observation sites such that minimum number of observations sites is satisfied
+        neigh = NearestNeighbors(
+            n_neighbors=min_n_obs + 1, radius=150, metric="precomputed", n_jobs=1
+        )
+        neigh.fit(distance_matrix.loc[obs_stations, obs_stations])
+        n_neigh_ind = neigh.kneighbors(
+            distance_matrix.loc[int_stations, obs_stations], return_distance=False
+        )
+
+        # Set `min_n_obs` observation sites to True
+        np.put_along_axis(obs_station_mask_df.values, n_neigh_ind, True, axis=1)
+
+        # Get observation sites within `max_obs_dist`
+        max_dist_mask = distance_matrix.loc[int_stations, obs_stations] < max_obs_dist
+
+        # If there are no observation sites within `max_obs_dist`
+        # then set all observation sites to False
+        obs_station_mask_df.values[~np.any(max_dist_mask, axis=1), :] = False
+
+        # Enable all observation sites within `max_obs_dist`
+        obs_station_mask_df |= max_dist_mask
+
+        # Don't include stations of interest
+        int_obs_sites = int_stations[np.isin(int_stations, obs_stations)]
+        for cur_station in int_obs_sites:
+            obs_station_mask_df.loc[cur_station, cur_station] = False
+
+        return obs_station_mask_df
+
+    return obs_site_filter
+
+
 def compute_cond_lnIM(
     IM: gc.im.IM,
     int_stations: np.ndarray,
@@ -195,11 +314,10 @@ def compute_cond_lnIM(
     gmm_params_df: pd.DataFrame,
     obs_series: pd.Series,
     hypo_loc: Tuple[float, float],
+    obs_site_filter_fn: Callable[[pd.DataFrame], List[str]],
     R: pd.DataFrame = None,
-    obs_site_filter_fn: Callable[
-        [pd.DataFrame], List[str]
-    ] = get_rmin_obs_site_filter_fn(),
     allow_obs_sites: bool = False,
+    verbose: bool = True,
 ) -> CondLnIMDistributionResult:
     """
     Computes the conditional lnIM distribution
@@ -227,7 +345,7 @@ def compute_cond_lnIM(
 
         If not provided then this is computed using the
         Loth & Baker model (2013)
-    obs_site_filter_fn: callable, optional
+    obs_site_filter_fn: callable
         Function that performs filtering on the distance
         between the site of interest and the available
         observation sites
@@ -249,6 +367,7 @@ def compute_cond_lnIM(
         If True then any observation sites in the
         sites of interests will also be computed
         as if that observation does not exist
+    verbose: bool
 
     Returns
     -------
@@ -260,10 +379,11 @@ def compute_cond_lnIM(
     # Otherwise drop those stations
     mask = np.isin(obs_stations, gmm_params_df.index.values)
     if np.count_nonzero(~mask) > 0:
-        print(
-            f"Missing GMM parameters for (observation) stations:\n"
-            f"{obs_stations[~mask]}\n\tDropping these stations"
-        )
+        if verbose:
+            print(
+                f"Missing GMM parameters for (observation) stations:\n"
+                f"{obs_stations[~mask]}\n\tDropping these stations"
+            )
         obs_stations = obs_stations[mask]
     obs_series = obs_series.loc[obs_stations]
 
@@ -271,43 +391,53 @@ def compute_cond_lnIM(
     # Otherwise drop them
     mask = np.isin(int_stations, gmm_params_df.index.values)
     if np.count_nonzero(~mask) > 0:
-        print(
-            f"Missing GMM parameters for sites of interest:\n"
-            f"{int_stations[~mask]}\n\tDropping these stations"
-        )
+        if verbose:
+            print(
+                f"Missing GMM parameters for sites of interest:\n"
+                f"{int_stations[~mask]}\n\tDropping these stations"
+            )
         int_stations = int_stations[mask]
 
     # Drop any sites of interest for which observations exists
     mask = np.isin(int_stations, obs_stations)
     if np.count_nonzero(mask) > 0 and not allow_obs_sites:
-        print(
-            f"Observations exist for the following sites of interest:\n"
-            f"{int_stations[mask]}\n\tDropping these stations"
-        )
+        if verbose:
+            print(
+                f"Observations exist for the following sites of interest:\n"
+                f"{int_stations[mask]}\n\tDropping these stations"
+            )
         int_stations = int_stations[~mask]
 
-    print(
-        f"Computing results for {int_stations.size} stations of interest, "
-        f"with {obs_stations.size} observation stations available"
-    )
+    if verbose:
+        print(
+            f"Computing results for {int_stations.size} stations of interest, "
+            f"with {obs_stations.size} observation stations available"
+        )
 
     # Relevant stations (Observation sites & Sites of interest)
     rel_stations = np.union1d(int_stations, obs_stations)
     gmm_params_df = gmm_params_df.loc[rel_stations]
 
-    print("Computing distance matrix")
+    if verbose:
+        print("Computing distance matrix")
     dist_matrix = calculate_distance_matrix(rel_stations, stations_df)
 
     if R is None:
-        print("Computing within-event site correlation matrix")
+        if verbose:
+            print("Computing within-event site correlation matrix")
         R = get_corr_matrix(rel_stations, dist_matrix, IM)
-    else:
+    elif verbose:
         print("Using provided within-event site correlation matrix")
 
     # Get the observation sites to use for each site of interest
-    obs_station_mask_df = obs_site_filter_fn(
-        hypo_loc, stations_df, int_stations, obs_stations, dist_matrix
-    )
+    if (
+        obs_station_mask_df := obs_site_filter_fn(
+            hypo_loc, stations_df, int_stations, obs_stations, dist_matrix
+        )
+    ) is None:
+        if verbose:
+            print("Not enough observation sites available, skipping")
+        return None
     assert np.all(obs_station_mask_df.columns.values.astype(str) == obs_stations)
     assert np.all(obs_station_mask_df.index.values.astype(str) == int_stations)
 
@@ -329,17 +459,17 @@ def compute_cond_lnIM(
 
         cond_df.loc[cur_station, ["mu", "sigma"]] = cur_cond_mu, cur_cond_sigma
 
-    # Combine into single data frame
-    combined_df = pd.concat((cond_df, obs_series.to_frame("mu")), axis=0)
-    combined_df["observation"] = False
-    combined_df.loc[obs_stations, "observation"] = True
-    combined_df.loc[obs_stations, "sigma"] = 0.0
-
-    # Compute median
-    combined_df["median"] = np.exp(combined_df.mu)
+    # # Combine into single data frame
+    # combined_df = pd.concat((cond_df, obs_series.to_frame("mu")), axis=0)
+    # combined_df["observation"] = False
+    # combined_df.loc[obs_stations, "observation"] = True
+    # combined_df.loc[obs_stations, "sigma"] = 0.0
+    #
+    # # Compute median
+    # combined_df["median"] = np.exp(combined_df.mu)
 
     return CondLnIMDistributionResult(
-        IM, cond_df, obs_stations, obs_series, obs_station_mask_df, combined_df, R
+        IM, cond_df, obs_stations, obs_series, obs_station_mask_df, R
     )
 
 
@@ -510,7 +640,7 @@ def gen_im_rels(
         [n_sites, n_ims, n_rels]
     """
     n_ims, n_sites = len(ims), dist_matrix.shape[0]
-    sites  = dist_matrix.index.values
+    sites = dist_matrix.index.values
 
     # Create the correlation matrix
     # The correlation matrix is made up of smaller
@@ -526,9 +656,9 @@ def gen_im_rels(
     R = np.full((n_sites * n_ims, n_sites * n_ims), fill_value=np.nan)
     for i, im_i in enumerate(ims):
         for j, im_j in enumerate(ims):
-            R[
-                i * n_sites : (i + 1) * n_sites, j * n_sites : (j + 1) * n_sites
-            ] = corr_fn(im_i, im_j, dist_matrix.values)
+            R[i * n_sites : (i + 1) * n_sites, j * n_sites : (j + 1) * n_sites] = (
+                corr_fn(im_i, im_j, dist_matrix.values)
+            )
 
     # Cholesky decomposition of the correlation matrix
     # Make positive definite if it isn't
@@ -540,17 +670,17 @@ def gen_im_rels(
 
     # Generate the between event-values
     mu = np.full((n_sites * n_ims, n_rels), fill_value=np.nan)
-    tau = np.full((n_sites * n_ims, n_rels), fill_value=np.nan)
+    between_event_residual = np.full((n_sites * n_ims, n_rels), fill_value=np.nan)
     u = np.full((n_sites * n_ims, n_rels), fill_value=np.nan)
     for i, im in enumerate(ims):
-        tau[i * n_sites : (i + 1) * n_sites, :] = (
-                np.random.normal(0.0, 1.0, size=n_sites * n_rels).reshape((n_sites, n_rels))
-                * gm_params.loc[sites, f"{im}_std_Inter"].values[:, np.newaxis]
+        between_event_residual[i * n_sites : (i + 1) * n_sites, :] = (
+            np.tile(np.random.normal(0.0, 1.0, size=n_rels), (n_sites, 1))
+            * gm_params.loc[sites, f"{im}_std_Inter"].values[:, np.newaxis]
         )
 
         u[i * n_sites : (i + 1) * n_sites] = (
-                np.random.normal(0.0, 1.0, size=n_sites * n_rels).reshape((n_sites, n_rels))
-                * gm_params.loc[sites, f"{im}_std_Intra"].values[:, np.newaxis]
+            np.random.normal(0.0, 1.0, size=n_sites * n_rels).reshape((n_sites, n_rels))
+            * gm_params.loc[sites, f"{im}_std_Intra"].values[:, np.newaxis]
         )
 
         mu[i * n_sites : (i + 1) * n_sites, :] = np.tile(
@@ -558,11 +688,17 @@ def gen_im_rels(
         )
 
     # Generate the within-event values
-    v = np.einsum("ij,jk->ik", L, u)
+    within_event_residual = np.einsum("ij,jk->ik", L, u)
 
-    im_values = mu + tau + v
+    im_values = mu + between_event_residual + within_event_residual
 
     # Convert back to [n_sites, n_ims, n_rels]
     im_values = im_values.reshape((n_sites, n_ims, n_rels), order="F")
+    between_event_residual = between_event_residual.reshape(
+        (n_sites, n_ims, n_rels), order="F"
+    )
+    within_event_residual = within_event_residual.reshape(
+        (n_sites, n_ims, n_rels), order="F"
+    )
 
-    return im_values
+    return im_values, between_event_residual, within_event_residual

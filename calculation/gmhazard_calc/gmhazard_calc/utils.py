@@ -113,7 +113,8 @@ def pandas_isin(array_1: np.ndarray, array_2: np.ndarray) -> np.ndarray:
 
 
 def get_min_max_values_for_im(im: IM):
-    """Get minimum and maximum for the given im. Values for velocity are
+    """
+    Get minimum and maximum for the given im. Values for velocity are
     given on cm/s, acceleration on cm/s^2 and Ds on s
     """
     if im.is_pSA():
