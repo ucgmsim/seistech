@@ -1,0 +1,194 @@
+<nrml xmlns="http://openquake.org/xmlns/nrml/0.5">
+  <logicTree>
+    <logicTreeBranchSet uncertaintyType="sourceModel" branchSetID="SLAB">
+      <logicTreeBranch branchID="slab-uniform-1depth-rates">
+        <uncertaintyModel>$SOURCE_DIR$/RmlsZToxMjEwMzM=/slab-uniform-1depth-rates.xml </uncertaintyModel>
+        <uncertaintyWeight>1.0</uncertaintyWeight>
+      </logicTreeBranch>
+    </logicTreeBranchSet>
+    <logicTreeBranchSet uncertaintyType="extendModel" branchSetID="Hik">
+      <logicTreeBranch branchID="Hik TL, N16pt5, b0pt95, C4, s0pt42">
+        <uncertaintyModel>$SOURCE_DIR$/SW52ZXJzaW9uU29sdXRpb25Ocm1sOjYzMjQwMDg=/U2NhbGVkSW52ZXJzaW9uU29sdXRpb246MTE0MjAw-ruptures.xml $SOURCE_DIR$/SW52ZXJzaW9uU29sdXRpb25Ocm1sOjYzMjQwMDg=/U2NhbGVkSW52ZXJzaW9uU29sdXRpb246MTE0MjAw-ruptures_sections.xml $SOURCE_DIR$/RmlsZToxMzA3MzI=/npFloor_MULTOT1346GruEEPAScomb-INT_hiktlck_b0.95_N0.27.xml $SOURCE_DIR$/SW52ZXJzaW9uU29sdXRpb25Ocm1sOjYzMjQwNzM=/U2NhbGVkSW52ZXJzaW9uU29sdXRpb246MTI5MTM3OA__-ruptures.xml $SOURCE_DIR$/SW52ZXJzaW9uU29sdXRpb25Ocm1sOjYzMjQwNzM=/U2NhbGVkSW52ZXJzaW9uU29sdXRpb246MTI5MTM3OA__-ruptures_sections.xml $SOURCE_DIR$/RmlsZToxMzA3NTM=/npFloor_MULTOT1346GruEEPAScomb-INT_puy_b0.90_N0.73.xml </uncertaintyModel>
+        <uncertaintyWeight>0.147216637218474</uncertaintyWeight>
+      </logicTreeBranch>
+      <logicTreeBranch branchID="Hik TL, N16pt5, b0pt95, C4, s1">
+        <uncertaintyModel>$SOURCE_DIR$/SW52ZXJzaW9uU29sdXRpb25Ocm1sOjYzMjQwMjA=/U2NhbGVkSW52ZXJzaW9uU29sdXRpb246MTE0MjAy-ruptures.xml $SOURCE_DIR$/SW52ZXJzaW9uU29sdXRpb25Ocm1sOjYzMjQwMjA=/U2NhbGVkSW52ZXJzaW9uU29sdXRpb246MTE0MjAy-ruptures_sections.xml $SOURCE_DIR$/RmlsZToxMzA3MzQ=/npFloor_MULTOT1346GruEEPAScomb-INT_hiktlck_b0.95_N0.64.xml $SOURCE_DIR$/SW52ZXJzaW9uU29sdXRpb25Ocm1sOjYzMjQwNzI=/U2NhbGVkSW52ZXJzaW9uU29sdXRpb246MTI5MTM4Mg__-ruptures.xml $SOURCE_DIR$/SW52ZXJzaW9uU29sdXRpb25Ocm1sOjYzMjQwNzI=/U2NhbGVkSW52ZXJzaW9uU29sdXRpb246MTI5MTM4Mg__-ruptures_sections.xml $SOURCE_DIR$/RmlsZToxMzA3NTQ=/npFloor_MULTOT1346GruEEPAScomb-INT_puy_b0.90_N2.60.xml </uncertaintyModel>
+        <uncertaintyWeight>0.281154911079988</uncertaintyWeight>
+      </logicTreeBranch>
+      <logicTreeBranch branchID="Hik TL, N16pt5, b0pt95, C4, s1pt58">
+        <uncertaintyModel>$SOURCE_DIR$/SW52ZXJzaW9uU29sdXRpb25Ocm1sOjYzMjQwMDc=/U2NhbGVkSW52ZXJzaW9uU29sdXRpb246MTE0MjA0-ruptures.xml $SOURCE_DIR$/SW52ZXJzaW9uU29sdXRpb25Ocm1sOjYzMjQwMDc=/U2NhbGVkSW52ZXJzaW9uU29sdXRpb246MTE0MjA0-ruptures_sections.xml $SOURCE_DIR$/RmlsZToxMzA3MzY=/npFloor_MULTOT1346GruEEPAScomb-INT_hiktlck_b0.95_N1.01.xml $SOURCE_DIR$/SW52ZXJzaW9uU29sdXRpb25Ocm1sOjYzMjQwNjc=/U2NhbGVkSW52ZXJzaW9uU29sdXRpb246MTI5MTM4Ng__-ruptures_sections.xml $SOURCE_DIR$/SW52ZXJzaW9uU29sdXRpb25Ocm1sOjYzMjQwNjc=/U2NhbGVkSW52ZXJzaW9uU29sdXRpb246MTI5MTM4Ng__-ruptures.xml $SOURCE_DIR$/RmlsZToxMzA3NTU=/npFloor_MULTOT1346GruEEPAScomb-INT_puy_b0.90_N4.47.xml </uncertaintyModel>
+        <uncertaintyWeight>0.148371277510384</uncertaintyWeight>
+      </logicTreeBranch>
+      <logicTreeBranch branchID="Hik TL, N21pt5, b1pt097, C4, s0pt42">
+        <uncertaintyModel>$SOURCE_DIR$/SW52ZXJzaW9uU29sdXRpb25Ocm1sOjYzMjQwMTg=/U2NhbGVkSW52ZXJzaW9uU29sdXRpb246MTE0MTk0-ruptures.xml $SOURCE_DIR$/SW52ZXJzaW9uU29sdXRpb25Ocm1sOjYzMjQwMTg=/U2NhbGVkSW52ZXJzaW9uU29sdXRpb246MTE0MTk0-ruptures_sections.xml $SOURCE_DIR$/RmlsZToxMzA3Mzg=/npFloor_MULTOT1346GruEEPAScomb-INT_hiktlck_b1.10_N0.35.xml $SOURCE_DIR$/SW52ZXJzaW9uU29sdXRpb25Ocm1sOjYzMjQwNzM=/U2NhbGVkSW52ZXJzaW9uU29sdXRpb246MTI5MTM3OA__-ruptures.xml $SOURCE_DIR$/SW52ZXJzaW9uU29sdXRpb25Ocm1sOjYzMjQwNzM=/U2NhbGVkSW52ZXJzaW9uU29sdXRpb246MTI5MTM3OA__-ruptures_sections.xml $SOURCE_DIR$/RmlsZToxMzA3NTM=/npFloor_MULTOT1346GruEEPAScomb-INT_puy_b0.90_N0.73.xml </uncertaintyModel>
+        <uncertaintyWeight>0.0887399956599006</uncertaintyWeight>
+      </logicTreeBranch>
+      <logicTreeBranch branchID="Hik TL, N21pt5, b1pt097, C4, s1">
+        <uncertaintyModel>$SOURCE_DIR$/SW52ZXJzaW9uU29sdXRpb25Ocm1sOjYzMjQwMTU=/U2NhbGVkSW52ZXJzaW9uU29sdXRpb246MTE0MTk2-ruptures_sections.xml $SOURCE_DIR$/SW52ZXJzaW9uU29sdXRpb25Ocm1sOjYzMjQwMTU=/U2NhbGVkSW52ZXJzaW9uU29sdXRpb246MTE0MTk2-ruptures.xml $SOURCE_DIR$/RmlsZToxMzA3NDA=/npFloor_MULTOT1346GruEEPAScomb-INT_hiktlck_b1.10_N0.83.xml $SOURCE_DIR$/SW52ZXJzaW9uU29sdXRpb25Ocm1sOjYzMjQwNzI=/U2NhbGVkSW52ZXJzaW9uU29sdXRpb246MTI5MTM4Mg__-ruptures.xml $SOURCE_DIR$/SW52ZXJzaW9uU29sdXRpb25Ocm1sOjYzMjQwNzI=/U2NhbGVkSW52ZXJzaW9uU29sdXRpb246MTI5MTM4Mg__-ruptures_sections.xml $SOURCE_DIR$/RmlsZToxMzA3NTQ=/npFloor_MULTOT1346GruEEPAScomb-INT_puy_b0.90_N2.60.xml </uncertaintyModel>
+        <uncertaintyWeight>0.169475991711261</uncertaintyWeight>
+      </logicTreeBranch>
+      <logicTreeBranch branchID="Hik TL, N21pt5, b1pt097, C4, s1pt58">
+        <uncertaintyModel>$SOURCE_DIR$/SW52ZXJzaW9uU29sdXRpb25Ocm1sOjYzMjQwMjE=/U2NhbGVkSW52ZXJzaW9uU29sdXRpb246MTE0MTk4-ruptures_sections.xml $SOURCE_DIR$/SW52ZXJzaW9uU29sdXRpb25Ocm1sOjYzMjQwMjE=/U2NhbGVkSW52ZXJzaW9uU29sdXRpb246MTE0MTk4-ruptures.xml $SOURCE_DIR$/RmlsZToxMzA3NDI=/npFloor_MULTOT1346GruEEPAScomb-INT_hiktlck_b1.10_N1.31.xml $SOURCE_DIR$/SW52ZXJzaW9uU29sdXRpb25Ocm1sOjYzMjQwNjc=/U2NhbGVkSW52ZXJzaW9uU29sdXRpb246MTI5MTM4Ng__-ruptures_sections.xml $SOURCE_DIR$/SW52ZXJzaW9uU29sdXRpb25Ocm1sOjYzMjQwNjc=/U2NhbGVkSW52ZXJzaW9uU29sdXRpb246MTI5MTM4Ng__-ruptures.xml $SOURCE_DIR$/RmlsZToxMzA3NTU=/npFloor_MULTOT1346GruEEPAScomb-INT_puy_b0.90_N4.47.xml </uncertaintyModel>
+        <uncertaintyWeight>0.0894359956258606</uncertaintyWeight>
+      </logicTreeBranch>
+      <logicTreeBranch branchID="Hik TL, N27pt9, b1pt241, C4, s0pt42">
+        <uncertaintyModel>$SOURCE_DIR$/SW52ZXJzaW9uU29sdXRpb25Ocm1sOjYzMjQwMDU=/U2NhbGVkSW52ZXJzaW9uU29sdXRpb246MTE0MTY0-ruptures.xml $SOURCE_DIR$/SW52ZXJzaW9uU29sdXRpb25Ocm1sOjYzMjQwMDU=/U2NhbGVkSW52ZXJzaW9uU29sdXRpb246MTE0MTY0-ruptures_sections.xml $SOURCE_DIR$/RmlsZToxMzA3NDQ=/npFloor_MULTOT1346GruEEPAScomb-INT_hiktlck_b1.24_N0.46.xml $SOURCE_DIR$/SW52ZXJzaW9uU29sdXRpb25Ocm1sOjYzMjQwNzM=/U2NhbGVkSW52ZXJzaW9uU29sdXRpb246MTI5MTM3OA__-ruptures.xml $SOURCE_DIR$/SW52ZXJzaW9uU29sdXRpb25Ocm1sOjYzMjQwNzM=/U2NhbGVkSW52ZXJzaW9uU29sdXRpb246MTI5MTM3OA__-ruptures_sections.xml $SOURCE_DIR$/RmlsZToxMzA3NTM=/npFloor_MULTOT1346GruEEPAScomb-INT_puy_b0.90_N0.73.xml </uncertaintyModel>
+        <uncertaintyWeight>0.0192986223768806</uncertaintyWeight>
+      </logicTreeBranch>
+      <logicTreeBranch branchID="Hik TL, N27pt9, b1pt241, C4, s1">
+        <uncertaintyModel>$SOURCE_DIR$/SW52ZXJzaW9uU29sdXRpb25Ocm1sOjYzMjQwMDk=/U2NhbGVkSW52ZXJzaW9uU29sdXRpb246MTE0MTY2-ruptures_sections.xml $SOURCE_DIR$/SW52ZXJzaW9uU29sdXRpb25Ocm1sOjYzMjQwMDk=/U2NhbGVkSW52ZXJzaW9uU29sdXRpb246MTE0MTY2-ruptures.xml $SOURCE_DIR$/RmlsZToxMzA3NDY=/npFloor_MULTOT1346GruEEPAScomb-INT_hiktlck_b1.24_N1.09.xml $SOURCE_DIR$/SW52ZXJzaW9uU29sdXRpb25Ocm1sOjYzMjQwNzI=/U2NhbGVkSW52ZXJzaW9uU29sdXRpb246MTI5MTM4Mg__-ruptures.xml $SOURCE_DIR$/SW52ZXJzaW9uU29sdXRpb25Ocm1sOjYzMjQwNzI=/U2NhbGVkSW52ZXJzaW9uU29sdXRpb246MTI5MTM4Mg__-ruptures_sections.xml $SOURCE_DIR$/RmlsZToxMzA3NTQ=/npFloor_MULTOT1346GruEEPAScomb-INT_puy_b0.90_N2.60.xml </uncertaintyModel>
+        <uncertaintyWeight>0.0368565846962387</uncertaintyWeight>
+      </logicTreeBranch>
+      <logicTreeBranch branchID="Hik TL, N27pt9, b1pt241, C4, s1pt58">
+        <uncertaintyModel>$SOURCE_DIR$/SW52ZXJzaW9uU29sdXRpb25Ocm1sOjYzMjM5OTk=/U2NhbGVkSW52ZXJzaW9uU29sdXRpb246MTE0MTY4-ruptures.xml $SOURCE_DIR$/SW52ZXJzaW9uU29sdXRpb25Ocm1sOjYzMjM5OTk=/U2NhbGVkSW52ZXJzaW9uU29sdXRpb246MTE0MTY4-ruptures_sections.xml $SOURCE_DIR$/RmlsZToxMzA3NDg=/npFloor_MULTOT1346GruEEPAScomb-INT_hiktlck_b1.24_N1.72.xml $SOURCE_DIR$/SW52ZXJzaW9uU29sdXRpb25Ocm1sOjYzMjQwNjc=/U2NhbGVkSW52ZXJzaW9uU29sdXRpb246MTI5MTM4Ng__-ruptures_sections.xml $SOURCE_DIR$/SW52ZXJzaW9uU29sdXRpb25Ocm1sOjYzMjQwNjc=/U2NhbGVkSW52ZXJzaW9uU29sdXRpb246MTI5MTM4Ng__-ruptures.xml $SOURCE_DIR$/RmlsZToxMzA3NTU=/npFloor_MULTOT1346GruEEPAScomb-INT_puy_b0.90_N4.47.xml </uncertaintyModel>
+        <uncertaintyWeight>0.019449984121013</uncertaintyWeight>
+      </logicTreeBranch>
+    </logicTreeBranchSet>
+    <logicTreeBranchSet uncertaintyType="extendModel" branchSetID="CRU">
+      <logicTreeBranch branchID="geodetic, TI, N2pt7, b0pt823 C4pt2 s0pt66">
+        <uncertaintyModel>$SOURCE_DIR$/SW52ZXJzaW9uU29sdXRpb25Ocm1sOjYyOTQwMjQ=/U2NhbGVkSW52ZXJzaW9uU29sdXRpb246MTIwNzIy-ruptures.xml $SOURCE_DIR$/SW52ZXJzaW9uU29sdXRpb25Ocm1sOjYyOTQwMjQ=/U2NhbGVkSW52ZXJzaW9uU29sdXRpb246MTIwNzIy-ruptures_sections.xml $SOURCE_DIR$/RmlsZToxMzA3MDc=/npFloor_MULTOT1346GruEEPAScomb-CRU_plyadj_ratestapered_b0.82_N2.57.xml </uncertaintyModel>
+        <uncertaintyWeight>0.0168335471189857</uncertaintyWeight>
+      </logicTreeBranch>
+      <logicTreeBranch branchID="geodetic, TI, N2pt7, b0pt823 C4pt2 s1">
+        <uncertaintyModel>$SOURCE_DIR$/SW52ZXJzaW9uU29sdXRpb25Ocm1sOjYyOTM3MDc=/U2NhbGVkSW52ZXJzaW9uU29sdXRpb246MTIwNzE3-ruptures_sections.xml $SOURCE_DIR$/SW52ZXJzaW9uU29sdXRpb25Ocm1sOjYyOTM3MDc=/U2NhbGVkSW52ZXJzaW9uU29sdXRpb246MTIwNzE3-ruptures.xml $SOURCE_DIR$/RmlsZToxMzA3MTA=/npFloor_MULTOT1346GruEEPAScomb-CRU_plyadj_ratestapered_b0.82_N3.90.xml </uncertaintyModel>
+        <uncertaintyWeight>0.0408928149352719</uncertaintyWeight>
+      </logicTreeBranch>
+      <logicTreeBranch branchID="geodetic, TI, N2pt7, b0pt823 C4pt2 s1pt41">
+        <uncertaintyModel>$SOURCE_DIR$/SW52ZXJzaW9uU29sdXRpb25Ocm1sOjYyOTQxMDc=/U2NhbGVkSW52ZXJzaW9uU29sdXRpb246MTIwNzQx-ruptures_sections.xml $SOURCE_DIR$/SW52ZXJzaW9uU29sdXRpb25Ocm1sOjYyOTQxMDc=/U2NhbGVkSW52ZXJzaW9uU29sdXRpb246MTIwNzQx-ruptures.xml $SOURCE_DIR$/RmlsZToxMzA3MTM=/npFloor_MULTOT1346GruEEPAScomb-CRU_plyadj_ratestapered_b0.82_N5.50.xml </uncertaintyModel>
+        <uncertaintyWeight>0.0216771620919014</uncertaintyWeight>
+      </logicTreeBranch>
+      <logicTreeBranch branchID="geodetic, TI, N3pt4, b0pt959 C4pt2 s0pt66">
+        <uncertaintyModel>$SOURCE_DIR$/SW52ZXJzaW9uU29sdXRpb25Ocm1sOjYyOTM4NTQ=/U2NhbGVkSW52ZXJzaW9uU29sdXRpb246MTIwNzYx-ruptures_sections.xml $SOURCE_DIR$/SW52ZXJzaW9uU29sdXRpb25Ocm1sOjYyOTM4NTQ=/U2NhbGVkSW52ZXJzaW9uU29sdXRpb246MTIwNzYx-ruptures.xml $SOURCE_DIR$/RmlsZToxMzA3MTY=/npFloor_MULTOT1346GruEEPAScomb-CRU_plyadj_ratestapered_b0.96_N3.17.xml </uncertaintyModel>
+        <uncertaintyWeight>0.0282427120823285</uncertaintyWeight>
+      </logicTreeBranch>
+      <logicTreeBranch branchID="geodetic, TI, N3pt4, b0pt959 C4pt2 s1">
+        <uncertaintyModel>$SOURCE_DIR$/SW52ZXJzaW9uU29sdXRpb25Ocm1sOjYyOTQxMjg=/U2NhbGVkSW52ZXJzaW9uU29sdXRpb246MTIwNzUz-ruptures_sections.xml $SOURCE_DIR$/SW52ZXJzaW9uU29sdXRpb25Ocm1sOjYyOTQxMjg=/U2NhbGVkSW52ZXJzaW9uU29sdXRpb246MTIwNzUz-ruptures.xml $SOURCE_DIR$/RmlsZToxMzA3MTk=/npFloor_MULTOT1346GruEEPAScomb-CRU_plyadj_ratestapered_b0.96_N4.80.xml </uncertaintyModel>
+        <uncertaintyWeight>0.0686084751056566</uncertaintyWeight>
+      </logicTreeBranch>
+      <logicTreeBranch branchID="geodetic, TI, N3pt4, b0pt959 C4pt2 s1pt41">
+        <uncertaintyModel>$SOURCE_DIR$/SW52ZXJzaW9uU29sdXRpb25Ocm1sOjYyOTQwODA=/U2NhbGVkSW52ZXJzaW9uU29sdXRpb246MTIwNzU3-ruptures.xml $SOURCE_DIR$/SW52ZXJzaW9uU29sdXRpb25Ocm1sOjYyOTQwODA=/U2NhbGVkSW52ZXJzaW9uU29sdXRpb246MTIwNzU3-ruptures_sections.xml $SOURCE_DIR$/RmlsZToxMzA3MjI=/npFloor_MULTOT1346GruEEPAScomb-CRU_plyadj_ratestapered_b0.96_N6.77.xml </uncertaintyModel>
+        <uncertaintyWeight>0.0363691528229985</uncertaintyWeight>
+      </logicTreeBranch>
+      <logicTreeBranch branchID="geodetic, TI, N4pt6, b1pt089 C4pt2 s0pt66">
+        <uncertaintyModel>$SOURCE_DIR$/SW52ZXJzaW9uU29sdXRpb25Ocm1sOjYyOTM5MTk=/U2NhbGVkSW52ZXJzaW9uU29sdXRpb246MTIwNzM0-ruptures.xml $SOURCE_DIR$/SW52ZXJzaW9uU29sdXRpb25Ocm1sOjYyOTM5MTk=/U2NhbGVkSW52ZXJzaW9uU29sdXRpb246MTIwNzM0-ruptures_sections.xml $SOURCE_DIR$/RmlsZToxMzA3MjU=/npFloor_MULTOT1346GruEEPAScomb-CRU_plyadj_ratestapered_b1.09_N4.22.xml </uncertaintyModel>
+        <uncertaintyWeight>0.00792374079868575</uncertaintyWeight>
+      </logicTreeBranch>
+      <logicTreeBranch branchID="geodetic, TI, N4pt6, b1pt089 C4pt2 s1">
+        <uncertaintyModel>$SOURCE_DIR$/SW52ZXJzaW9uU29sdXRpb25Ocm1sOjYyOTM1NTA=/U2NhbGVkSW52ZXJzaW9uU29sdXRpb246MTIwNzI4-ruptures_sections.xml $SOURCE_DIR$/SW52ZXJzaW9uU29sdXRpb25Ocm1sOjYyOTM1NTA=/U2NhbGVkSW52ZXJzaW9uU29sdXRpb246MTIwNzI4-ruptures.xml $SOURCE_DIR$/RmlsZToxMzA3Mjg=/npFloor_MULTOT1346GruEEPAScomb-CRU_plyadj_ratestapered_b1.09_N6.40.xml </uncertaintyModel>
+        <uncertaintyWeight>0.0192487099590715</uncertaintyWeight>
+      </logicTreeBranch>
+      <logicTreeBranch branchID="geodetic, TI, N4pt6, b1pt089 C4pt2 s1pt41">
+        <uncertaintyModel>$SOURCE_DIR$/SW52ZXJzaW9uU29sdXRpb25Ocm1sOjYyOTM4NTA=/U2NhbGVkSW52ZXJzaW9uU29sdXRpb246MTIwNzMw-ruptures.xml $SOURCE_DIR$/SW52ZXJzaW9uU29sdXRpb25Ocm1sOjYyOTM4NTA=/U2NhbGVkSW52ZXJzaW9uU29sdXRpb246MTIwNzMw-ruptures_sections.xml $SOURCE_DIR$/RmlsZToxMzA3MzE=/npFloor_MULTOT1346GruEEPAScomb-CRU_plyadj_ratestapered_b1.09_N9.02.xml </uncertaintyModel>
+        <uncertaintyWeight>0.0102036850851</uncertaintyWeight>
+      </logicTreeBranch>
+      <logicTreeBranch branchID="geologic, TI, N2pt7, b0pt823 C4pt2 s0pt66">
+        <uncertaintyModel>$SOURCE_DIR$/SW52ZXJzaW9uU29sdXRpb25Ocm1sOjYzMjM5MjY=/U2NhbGVkSW52ZXJzaW9uU29sdXRpb246MTIwNzA4-ruptures.xml $SOURCE_DIR$/SW52ZXJzaW9uU29sdXRpb25Ocm1sOjYzMjM5MjY=/U2NhbGVkSW52ZXJzaW9uU29sdXRpb246MTIwNzA4-ruptures_sections.xml $SOURCE_DIR$/RmlsZToxMzA3MDc=/npFloor_MULTOT1346GruEEPAScomb-CRU_plyadj_ratestapered_b0.82_N2.57.xml </uncertaintyModel>
+        <uncertaintyWeight>0.0236560148670262</uncertaintyWeight>
+      </logicTreeBranch>
+      <logicTreeBranch branchID="geologic, TI, N2pt7, b0pt823 C4pt2 s1">
+        <uncertaintyModel>$SOURCE_DIR$/SW52ZXJzaW9uU29sdXRpb25Ocm1sOjYzMjM5MzU=/U2NhbGVkSW52ZXJzaW9uU29sdXRpb246MTIwNzA3-ruptures.xml $SOURCE_DIR$/SW52ZXJzaW9uU29sdXRpb25Ocm1sOjYzMjM5MzU=/U2NhbGVkSW52ZXJzaW9uU29sdXRpb246MTIwNzA3-ruptures_sections.xml $SOURCE_DIR$/RmlsZToxMzA3MTA=/npFloor_MULTOT1346GruEEPAScomb-CRU_plyadj_ratestapered_b0.82_N3.90.xml </uncertaintyModel>
+        <uncertaintyWeight>0.0574662625307477</uncertaintyWeight>
+      </logicTreeBranch>
+      <logicTreeBranch branchID="geologic, TI, N2pt7, b0pt823 C4pt2 s1pt41">
+        <uncertaintyModel>$SOURCE_DIR$/SW52ZXJzaW9uU29sdXRpb25Ocm1sOjYzMjM5Mjk=/U2NhbGVkSW52ZXJzaW9uU29sdXRpb246MTIwNzA1-ruptures.xml $SOURCE_DIR$/SW52ZXJzaW9uU29sdXRpb25Ocm1sOjYzMjM5Mjk=/U2NhbGVkSW52ZXJzaW9uU29sdXRpb246MTIwNzA1-ruptures_sections.xml $SOURCE_DIR$/RmlsZToxMzA3MTM=/npFloor_MULTOT1346GruEEPAScomb-CRU_plyadj_ratestapered_b0.82_N5.50.xml </uncertaintyModel>
+        <uncertaintyWeight>0.0304626983900857</uncertaintyWeight>
+      </logicTreeBranch>
+      <logicTreeBranch branchID="geologic, TI, N3pt4, b0pt959 C4pt2 s0pt66">
+        <uncertaintyModel>$SOURCE_DIR$/SW52ZXJzaW9uU29sdXRpb25Ocm1sOjYzMjM5Mzk=/U2NhbGVkSW52ZXJzaW9uU29sdXRpb246MTIwNzAy-ruptures_sections.xml $SOURCE_DIR$/SW52ZXJzaW9uU29sdXRpb25Ocm1sOjYzMjM5Mzk=/U2NhbGVkSW52ZXJzaW9uU29sdXRpb246MTIwNzAy-ruptures.xml $SOURCE_DIR$/RmlsZToxMzA3MTY=/npFloor_MULTOT1346GruEEPAScomb-CRU_plyadj_ratestapered_b0.96_N3.17.xml </uncertaintyModel>
+        <uncertaintyWeight>0.0271169544446554</uncertaintyWeight>
+      </logicTreeBranch>
+      <logicTreeBranch branchID="geologic, TI, N3pt4, b0pt959 C4pt2 s1">
+        <uncertaintyModel>$SOURCE_DIR$/SW52ZXJzaW9uU29sdXRpb25Ocm1sOjYzMjM5NDM=/U2NhbGVkSW52ZXJzaW9uU29sdXRpb246MTIwNjk4-ruptures_sections.xml $SOURCE_DIR$/SW52ZXJzaW9uU29sdXRpb25Ocm1sOjYzMjM5NDM=/U2NhbGVkSW52ZXJzaW9uU29sdXRpb246MTIwNjk4-ruptures.xml $SOURCE_DIR$/RmlsZToxMzA3MTk=/npFloor_MULTOT1346GruEEPAScomb-CRU_plyadj_ratestapered_b0.96_N4.80.xml </uncertaintyModel>
+        <uncertaintyWeight>0.0658737336745166</uncertaintyWeight>
+      </logicTreeBranch>
+      <logicTreeBranch branchID="geologic, TI, N3pt4, b0pt959 C4pt2 s1pt41">
+        <uncertaintyModel>$SOURCE_DIR$/SW52ZXJzaW9uU29sdXRpb25Ocm1sOjYzMjM5MTg=/U2NhbGVkSW52ZXJzaW9uU29sdXRpb246MTIwNjk2-ruptures.xml $SOURCE_DIR$/SW52ZXJzaW9uU29sdXRpb25Ocm1sOjYzMjM5MTg=/U2NhbGVkSW52ZXJzaW9uU29sdXRpb246MTIwNjk2-ruptures_sections.xml $SOURCE_DIR$/RmlsZToxMzA3MjI=/npFloor_MULTOT1346GruEEPAScomb-CRU_plyadj_ratestapered_b0.96_N6.77.xml </uncertaintyModel>
+        <uncertaintyWeight>0.0349194743556176</uncertaintyWeight>
+      </logicTreeBranch>
+      <logicTreeBranch branchID="geologic, TI, N4pt6, b1pt089 C4pt2 s0pt66">
+        <uncertaintyModel>$SOURCE_DIR$/SW52ZXJzaW9uU29sdXRpb25Ocm1sOjYzMjM5Mjc=/U2NhbGVkSW52ZXJzaW9uU29sdXRpb246MTIwNjcy-ruptures_sections.xml $SOURCE_DIR$/SW52ZXJzaW9uU29sdXRpb25Ocm1sOjYzMjM5Mjc=/U2NhbGVkSW52ZXJzaW9uU29sdXRpb246MTIwNjcy-ruptures.xml $SOURCE_DIR$/RmlsZToxMzA3MjU=/npFloor_MULTOT1346GruEEPAScomb-CRU_plyadj_ratestapered_b1.09_N4.22.xml </uncertaintyModel>
+        <uncertaintyWeight>0.00222703068831837</uncertaintyWeight>
+      </logicTreeBranch>
+      <logicTreeBranch branchID="geologic, TI, N4pt6, b1pt089 C4pt2 s1">
+        <uncertaintyModel>$SOURCE_DIR$/SW52ZXJzaW9uU29sdXRpb25Ocm1sOjYzMjM5MzE=/U2NhbGVkSW52ZXJzaW9uU29sdXRpb246MTIwNjc2-ruptures_sections.xml $SOURCE_DIR$/SW52ZXJzaW9uU29sdXRpb25Ocm1sOjYzMjM5MzE=/U2NhbGVkSW52ZXJzaW9uU29sdXRpb246MTIwNjc2-ruptures.xml $SOURCE_DIR$/RmlsZToxMzA3Mjg=/npFloor_MULTOT1346GruEEPAScomb-CRU_plyadj_ratestapered_b1.09_N6.40.xml </uncertaintyModel>
+        <uncertaintyWeight>0.00541000379473566</uncertaintyWeight>
+      </logicTreeBranch>
+      <logicTreeBranch branchID="geologic, TI, N4pt6, b1pt089 C4pt2 s1pt41">
+        <uncertaintyModel>$SOURCE_DIR$/SW52ZXJzaW9uU29sdXRpb25Ocm1sOjYzMjM5MzM=/U2NhbGVkSW52ZXJzaW9uU29sdXRpb246MTIwNjc1-ruptures_sections.xml $SOURCE_DIR$/SW52ZXJzaW9uU29sdXRpb25Ocm1sOjYzMjM5MzM=/U2NhbGVkSW52ZXJzaW9uU29sdXRpb246MTIwNjc1-ruptures.xml $SOURCE_DIR$/RmlsZToxMzA3MzE=/npFloor_MULTOT1346GruEEPAScomb-CRU_plyadj_ratestapered_b1.09_N9.02.xml </uncertaintyModel>
+        <uncertaintyWeight>0.00286782725429677</uncertaintyWeight>
+      </logicTreeBranch>
+      <logicTreeBranch branchID="geodetic, TD, N2pt7, b0pt823 C4pt2 s0pt66">
+        <uncertaintyModel>$SOURCE_DIR$/SW52ZXJzaW9uU29sdXRpb25Ocm1sOjYzMjM5NDQ=/U2NhbGVkSW52ZXJzaW9uU29sdXRpb246MTIwODI2-ruptures.xml $SOURCE_DIR$/SW52ZXJzaW9uU29sdXRpb25Ocm1sOjYzMjM5NDQ=/U2NhbGVkSW52ZXJzaW9uU29sdXRpb246MTIwODI2-ruptures_sections.xml $SOURCE_DIR$/RmlsZToxMzA3MDc=/npFloor_MULTOT1346GruEEPAScomb-CRU_plyadj_ratestapered_b0.82_N2.57.xml </uncertaintyModel>
+        <uncertaintyWeight>0.0168335471189857</uncertaintyWeight>
+      </logicTreeBranch>
+      <logicTreeBranch branchID="geodetic, TD, N2pt7, b0pt823 C4pt2 s1">
+        <uncertaintyModel>$SOURCE_DIR$/SW52ZXJzaW9uU29sdXRpb25Ocm1sOjYzMjM5NDk=/U2NhbGVkSW52ZXJzaW9uU29sdXRpb246MTIwODQ2-ruptures.xml $SOURCE_DIR$/SW52ZXJzaW9uU29sdXRpb25Ocm1sOjYzMjM5NDk=/U2NhbGVkSW52ZXJzaW9uU29sdXRpb246MTIwODQ2-ruptures_sections.xml $SOURCE_DIR$/RmlsZToxMzA3MTA=/npFloor_MULTOT1346GruEEPAScomb-CRU_plyadj_ratestapered_b0.82_N3.90.xml </uncertaintyModel>
+        <uncertaintyWeight>0.0408928149352719</uncertaintyWeight>
+      </logicTreeBranch>
+      <logicTreeBranch branchID="geodetic, TD, N2pt7, b0pt823 C4pt2 s1pt41">
+        <uncertaintyModel>$SOURCE_DIR$/SW52ZXJzaW9uU29sdXRpb25Ocm1sOjYzMjM5NTI=/U2NhbGVkSW52ZXJzaW9uU29sdXRpb246MTIwODI0-ruptures_sections.xml $SOURCE_DIR$/SW52ZXJzaW9uU29sdXRpb25Ocm1sOjYzMjM5NTI=/U2NhbGVkSW52ZXJzaW9uU29sdXRpb246MTIwODI0-ruptures.xml $SOURCE_DIR$/RmlsZToxMzA3MTM=/npFloor_MULTOT1346GruEEPAScomb-CRU_plyadj_ratestapered_b0.82_N5.50.xml </uncertaintyModel>
+        <uncertaintyWeight>0.0216771620919014</uncertaintyWeight>
+      </logicTreeBranch>
+      <logicTreeBranch branchID="geodetic, TD, N3pt4, b0pt959 C4pt2 s0pt66">
+        <uncertaintyModel>$SOURCE_DIR$/SW52ZXJzaW9uU29sdXRpb25Ocm1sOjYzMjM5Njc=/U2NhbGVkSW52ZXJzaW9uU29sdXRpb246MTIwODY1-ruptures_sections.xml $SOURCE_DIR$/SW52ZXJzaW9uU29sdXRpb25Ocm1sOjYzMjM5Njc=/U2NhbGVkSW52ZXJzaW9uU29sdXRpb246MTIwODY1-ruptures.xml $SOURCE_DIR$/RmlsZToxMzA3MTY=/npFloor_MULTOT1346GruEEPAScomb-CRU_plyadj_ratestapered_b0.96_N3.17.xml </uncertaintyModel>
+        <uncertaintyWeight>0.0282427120823285</uncertaintyWeight>
+      </logicTreeBranch>
+      <logicTreeBranch branchID="geodetic, TD, N3pt4, b0pt959 C4pt2 s1">
+        <uncertaintyModel>$SOURCE_DIR$/SW52ZXJzaW9uU29sdXRpb25Ocm1sOjYzMjM5NjA=/U2NhbGVkSW52ZXJzaW9uU29sdXRpb246MTIwODYz-ruptures_sections.xml $SOURCE_DIR$/SW52ZXJzaW9uU29sdXRpb25Ocm1sOjYzMjM5NjA=/U2NhbGVkSW52ZXJzaW9uU29sdXRpb246MTIwODYz-ruptures.xml $SOURCE_DIR$/RmlsZToxMzA3MTk=/npFloor_MULTOT1346GruEEPAScomb-CRU_plyadj_ratestapered_b0.96_N4.80.xml </uncertaintyModel>
+        <uncertaintyWeight>0.0686084751056566</uncertaintyWeight>
+      </logicTreeBranch>
+      <logicTreeBranch branchID="geodetic, TD, N3pt4, b0pt959 C4pt2 s1pt41">
+        <uncertaintyModel>$SOURCE_DIR$/SW52ZXJzaW9uU29sdXRpb25Ocm1sOjYzMjM5NTQ=/U2NhbGVkSW52ZXJzaW9uU29sdXRpb246MTIwODY5-ruptures.xml $SOURCE_DIR$/SW52ZXJzaW9uU29sdXRpb25Ocm1sOjYzMjM5NTQ=/U2NhbGVkSW52ZXJzaW9uU29sdXRpb246MTIwODY5-ruptures_sections.xml $SOURCE_DIR$/RmlsZToxMzA3MjI=/npFloor_MULTOT1346GruEEPAScomb-CRU_plyadj_ratestapered_b0.96_N6.77.xml </uncertaintyModel>
+        <uncertaintyWeight>0.0363691528229985</uncertaintyWeight>
+      </logicTreeBranch>
+      <logicTreeBranch branchID="geodetic, TD, N4pt6, b1pt089 C4pt2 s0pt66">
+        <uncertaintyModel>$SOURCE_DIR$/SW52ZXJzaW9uU29sdXRpb25Ocm1sOjYzMjM5NjM=/U2NhbGVkSW52ZXJzaW9uU29sdXRpb246MTIwODQ3-ruptures_sections.xml $SOURCE_DIR$/SW52ZXJzaW9uU29sdXRpb25Ocm1sOjYzMjM5NjM=/U2NhbGVkSW52ZXJzaW9uU29sdXRpb246MTIwODQ3-ruptures.xml $SOURCE_DIR$/RmlsZToxMzA3MjU=/npFloor_MULTOT1346GruEEPAScomb-CRU_plyadj_ratestapered_b1.09_N4.22.xml </uncertaintyModel>
+        <uncertaintyWeight>0.00792374079868575</uncertaintyWeight>
+      </logicTreeBranch>
+      <logicTreeBranch branchID="geodetic, TD, N4pt6, b1pt089 C4pt2 s1">
+        <uncertaintyModel>$SOURCE_DIR$/SW52ZXJzaW9uU29sdXRpb25Ocm1sOjYzMjM5NzA=/U2NhbGVkSW52ZXJzaW9uU29sdXRpb246MTIwODE4-ruptures_sections.xml $SOURCE_DIR$/SW52ZXJzaW9uU29sdXRpb25Ocm1sOjYzMjM5NzA=/U2NhbGVkSW52ZXJzaW9uU29sdXRpb246MTIwODE4-ruptures.xml $SOURCE_DIR$/RmlsZToxMzA3Mjg=/npFloor_MULTOT1346GruEEPAScomb-CRU_plyadj_ratestapered_b1.09_N6.40.xml </uncertaintyModel>
+        <uncertaintyWeight>0.0192487099590715</uncertaintyWeight>
+      </logicTreeBranch>
+      <logicTreeBranch branchID="geodetic, TD, N4pt6, b1pt089 C4pt2 s1pt41">
+        <uncertaintyModel>$SOURCE_DIR$/SW52ZXJzaW9uU29sdXRpb25Ocm1sOjYzMjM5NTk=/U2NhbGVkSW52ZXJzaW9uU29sdXRpb246MTIwODM3-ruptures_sections.xml $SOURCE_DIR$/SW52ZXJzaW9uU29sdXRpb25Ocm1sOjYzMjM5NTk=/U2NhbGVkSW52ZXJzaW9uU29sdXRpb246MTIwODM3-ruptures.xml $SOURCE_DIR$/RmlsZToxMzA3MzE=/npFloor_MULTOT1346GruEEPAScomb-CRU_plyadj_ratestapered_b1.09_N9.02.xml </uncertaintyModel>
+        <uncertaintyWeight>0.0102036850851</uncertaintyWeight>
+      </logicTreeBranch>
+      <logicTreeBranch branchID="geologic, TD, N2pt7, b0pt823 C4pt2 s0pt66">
+        <uncertaintyModel>$SOURCE_DIR$/SW52ZXJzaW9uU29sdXRpb25Ocm1sOjYyOTU5MzA=/U2NhbGVkSW52ZXJzaW9uU29sdXRpb246MTIwODE1-ruptures_sections.xml $SOURCE_DIR$/SW52ZXJzaW9uU29sdXRpb25Ocm1sOjYyOTU5MzA=/U2NhbGVkSW52ZXJzaW9uU29sdXRpb246MTIwODE1-ruptures.xml $SOURCE_DIR$/RmlsZToxMzA3MDc=/npFloor_MULTOT1346GruEEPAScomb-CRU_plyadj_ratestapered_b0.82_N2.57.xml </uncertaintyModel>
+        <uncertaintyWeight>0.0236560148670263</uncertaintyWeight>
+      </logicTreeBranch>
+      <logicTreeBranch branchID="geologic, TD, N2pt7, b0pt823 C4pt2 s1">
+        <uncertaintyModel>$SOURCE_DIR$/SW52ZXJzaW9uU29sdXRpb25Ocm1sOjYyOTU5MTc=/U2NhbGVkSW52ZXJzaW9uU29sdXRpb246MTIwODEx-ruptures.xml $SOURCE_DIR$/SW52ZXJzaW9uU29sdXRpb25Ocm1sOjYyOTU5MTc=/U2NhbGVkSW52ZXJzaW9uU29sdXRpb246MTIwODEx-ruptures_sections.xml $SOURCE_DIR$/RmlsZToxMzA3MTA=/npFloor_MULTOT1346GruEEPAScomb-CRU_plyadj_ratestapered_b0.82_N3.90.xml </uncertaintyModel>
+        <uncertaintyWeight>0.0574662625307477</uncertaintyWeight>
+      </logicTreeBranch>
+      <logicTreeBranch branchID="geologic, TD, N2pt7, b0pt823 C4pt2 s1pt41">
+        <uncertaintyModel>$SOURCE_DIR$/SW52ZXJzaW9uU29sdXRpb25Ocm1sOjYyOTY0MTY=/U2NhbGVkSW52ZXJzaW9uU29sdXRpb246MTIwODE2-ruptures.xml $SOURCE_DIR$/SW52ZXJzaW9uU29sdXRpb25Ocm1sOjYyOTY0MTY=/U2NhbGVkSW52ZXJzaW9uU29sdXRpb246MTIwODE2-ruptures_sections.xml $SOURCE_DIR$/RmlsZToxMzA3MTM=/npFloor_MULTOT1346GruEEPAScomb-CRU_plyadj_ratestapered_b0.82_N5.50.xml </uncertaintyModel>
+        <uncertaintyWeight>0.0304626983900857</uncertaintyWeight>
+      </logicTreeBranch>
+      <logicTreeBranch branchID="geologic, TD, N3pt4, b0pt959 C4pt2 s0pt66">
+        <uncertaintyModel>$SOURCE_DIR$/SW52ZXJzaW9uU29sdXRpb25Ocm1sOjYyOTY0NDg=/U2NhbGVkSW52ZXJzaW9uU29sdXRpb246MTIwODA3-ruptures.xml $SOURCE_DIR$/SW52ZXJzaW9uU29sdXRpb25Ocm1sOjYyOTY0NDg=/U2NhbGVkSW52ZXJzaW9uU29sdXRpb246MTIwODA3-ruptures_sections.xml $SOURCE_DIR$/RmlsZToxMzA3MTY=/npFloor_MULTOT1346GruEEPAScomb-CRU_plyadj_ratestapered_b0.96_N3.17.xml </uncertaintyModel>
+        <uncertaintyWeight>0.0271169544446554</uncertaintyWeight>
+      </logicTreeBranch>
+      <logicTreeBranch branchID="geologic, TD, N3pt4, b0pt959 C4pt2 s1">
+        <uncertaintyModel>$SOURCE_DIR$/SW52ZXJzaW9uU29sdXRpb25Ocm1sOjYyOTY0NDA=/U2NhbGVkSW52ZXJzaW9uU29sdXRpb246MTIwNzk2-ruptures_sections.xml $SOURCE_DIR$/SW52ZXJzaW9uU29sdXRpb25Ocm1sOjYyOTY0NDA=/U2NhbGVkSW52ZXJzaW9uU29sdXRpb246MTIwNzk2-ruptures.xml $SOURCE_DIR$/RmlsZToxMzA3MTk=/npFloor_MULTOT1346GruEEPAScomb-CRU_plyadj_ratestapered_b0.96_N4.80.xml </uncertaintyModel>
+        <uncertaintyWeight>0.0658737336745166</uncertaintyWeight>
+      </logicTreeBranch>
+      <logicTreeBranch branchID="geologic, TD, N3pt4, b0pt959 C4pt2 s1pt41">
+        <uncertaintyModel>$SOURCE_DIR$/SW52ZXJzaW9uU29sdXRpb25Ocm1sOjYyOTY0NDM=/U2NhbGVkSW52ZXJzaW9uU29sdXRpb246MTIwODA5-ruptures.xml $SOURCE_DIR$/SW52ZXJzaW9uU29sdXRpb25Ocm1sOjYyOTY0NDM=/U2NhbGVkSW52ZXJzaW9uU29sdXRpb246MTIwODA5-ruptures_sections.xml $SOURCE_DIR$/RmlsZToxMzA3MjI=/npFloor_MULTOT1346GruEEPAScomb-CRU_plyadj_ratestapered_b0.96_N6.77.xml </uncertaintyModel>
+        <uncertaintyWeight>0.0349194743556176</uncertaintyWeight>
+      </logicTreeBranch>
+      <logicTreeBranch branchID="geologic, TD, N4pt6, b1pt089 C4pt2 s0pt66">
+        <uncertaintyModel>$SOURCE_DIR$/SW52ZXJzaW9uU29sdXRpb25Ocm1sOjYyOTU5MTA=/U2NhbGVkSW52ZXJzaW9uU29sdXRpb246MTIwNzg4-ruptures.xml $SOURCE_DIR$/SW52ZXJzaW9uU29sdXRpb25Ocm1sOjYyOTU5MTA=/U2NhbGVkSW52ZXJzaW9uU29sdXRpb246MTIwNzg4-ruptures_sections.xml $SOURCE_DIR$/RmlsZToxMzA3MjU=/npFloor_MULTOT1346GruEEPAScomb-CRU_plyadj_ratestapered_b1.09_N4.22.xml </uncertaintyModel>
+        <uncertaintyWeight>0.00222703068831837</uncertaintyWeight>
+      </logicTreeBranch>
+      <logicTreeBranch branchID="geologic, TD, N4pt6, b1pt089 C4pt2 s1">
+        <uncertaintyModel>$SOURCE_DIR$/SW52ZXJzaW9uU29sdXRpb25Ocm1sOjYyOTY0Mzg=/U2NhbGVkSW52ZXJzaW9uU29sdXRpb246MTIwNzg3-ruptures_sections.xml $SOURCE_DIR$/SW52ZXJzaW9uU29sdXRpb25Ocm1sOjYyOTY0Mzg=/U2NhbGVkSW52ZXJzaW9uU29sdXRpb246MTIwNzg3-ruptures.xml $SOURCE_DIR$/RmlsZToxMzA3Mjg=/npFloor_MULTOT1346GruEEPAScomb-CRU_plyadj_ratestapered_b1.09_N6.40.xml </uncertaintyModel>
+        <uncertaintyWeight>0.00541000379473566</uncertaintyWeight>
+      </logicTreeBranch>
+      <logicTreeBranch branchID="geologic, TD, N4pt6, b1pt089 C4pt2 s1pt41">
+        <uncertaintyModel>$SOURCE_DIR$/SW52ZXJzaW9uU29sdXRpb25Ocm1sOjYyOTY0MTM=/U2NhbGVkSW52ZXJzaW9uU29sdXRpb246MTIwNzc4-ruptures.xml $SOURCE_DIR$/SW52ZXJzaW9uU29sdXRpb25Ocm1sOjYyOTY0MTM=/U2NhbGVkSW52ZXJzaW9uU29sdXRpb246MTIwNzc4-ruptures_sections.xml $SOURCE_DIR$/RmlsZToxMzA3MzE=/npFloor_MULTOT1346GruEEPAScomb-CRU_plyadj_ratestapered_b1.09_N9.02.xml </uncertaintyModel>
+        <uncertaintyWeight>0.00286782725429677</uncertaintyWeight>
+      </logicTreeBranch>
+    </logicTreeBranchSet>
+  </logicTree>
+</nrml>
