@@ -1,5 +1,8 @@
+from pathlib import Path
+
 from enum import Enum
 
+RESOURCE_DIR = Path(__file__).parent / "resources"
 
 class IMLevelOptions(str, Enum):
     nshm = "nshm"
@@ -102,10 +105,11 @@ EXTENDEND_N_IM_LEVELS = 200
 GMM_LOGIC_TREE_FNAME = "NZ_NSHM_GMM_LT_final_EE.xml"
 BACKARC_POLYGON_FNAME = "backarc.json"
 
-
 BASE_SOURCE_MODEL_FNAME = "base_source_model.xml"
 HAZARD_BASE_JOB_INI_FNAME = "hazard_base_job.ini"
 DISAGG_BASE_JOB_INI_FNAME = "disagg_base_job.ini"
+
+SOURCE_DEFINITIONS_DIRNAME = "source_definitions"
 
 
 DEFAULT_UHS_RPS = [25, 50, 100, 150, 250, 500, 1000, 2500, 5000, 10_000]
