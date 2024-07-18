@@ -59,19 +59,29 @@ class IM:
         if im_type == IMType.pSA and period is None:
             raise ValueError("Creation of pSA IM does not have a specified period")
 
-    @classmethod
-    def from_str(cls, im_string: str, im_component: Optional[str] = None):
-        """Converts a given string to an IM object"""
-        period = None
-        if im_string.startswith("pSA") and "_" in im_string:
-            im_string, period = im_string.split("_")
-            period = float(period.replace("p", "."))
+    @property
+    def file_format(self):
+        """
+        Outputs the normal str version of the IM
+        Except replaces the . with a p
+        """
+        return str(self).replace(".", "p")
 
-        return (
-            cls(IMType[im_string], period)
-            if im_component is None
-            else cls(IMType[im_string], period, IMComponent(im_component))
-        )
+    @property
+    def is_pSA(self):
+        """Returns True if IM is of type pSA otherwise False"""
+        return self.im_type == IMType.pSA
+
+    @property
+    def oq_str(self):
+        """
+        Converts the IM to the format used in Openquake
+        """
+        if self.im_type == IMType.pSA:
+            return f"SA({self.period})"
+        return str(self.im_type)
+
+
 
     def __str__(self):
         """Overrides the string method by just
@@ -97,16 +107,32 @@ class IM:
     def __ne__(self, other):
         return not self.__eq__(other)
 
-    def file_format(self):
-        """
-        Outputs the normal str version of the IM
-        Except does a replace on the period for p instead of . for saving in file formats
-        """
-        return str(self).replace(".", "p")
+    @classmethod
+    def from_str(cls, im_string: str, im_component: Optional[str] = None):
+        """Converts a given string to an IM object"""
+        period = None
+        if im_string.startswith("pSA") and "_" in im_string:
+            im_string, period = im_string.split("_")
+            period = float(period.replace("p", "."))
 
-    def is_pSA(self):
-        """Returns True if IM is of type pSA otherwise False"""
-        return self.im_type == IMType.pSA
+        return (
+            cls(IMType[im_string], period)
+            if im_component is None
+            else cls(IMType[im_string], period, IMComponent(im_component))
+        )
+
+    @classmethod
+    def from_oq_str(cls, oq_im_str: str):
+        """Converts an OpenQuake IM string to an IM object"""
+        if oq_im_str == "PGA":
+            return cls(IMType.PGA)
+        elif oq_im_str.startswith("SA"):
+            return cls(
+                IMType.pSA,
+                period=float(oq_im_str.rstrip(")").split("(", maxsplit=1)[-1]),
+            )
+        else:
+            raise ValueError(f"Unsupported IM string: {oq_im_str}")
 
 
 def to_string_list(IMs: Sequence[IM]):

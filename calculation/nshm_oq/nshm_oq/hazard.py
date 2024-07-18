@@ -3,9 +3,14 @@ import json
 from pathlib import Path
 
 import pandas as pd
+import numpy as np
 import gmhazard_common as common
+from openquake.calculators import extract
+from openquake.commonlib import datastore
+
 
 from . import constants, utils
+from .NSHMSiteInfo import NSHMSiteInfo
 
 
 def setup_hazard_run(
@@ -38,11 +43,9 @@ def setup_hazard_run(
         DataFrame containing the site information
         Required columns: lon, lat, vs30, z1p0, z2p5, backarc
     """
-    # Create the run dir
-    (run_dir := output_dir / "run_dir").mkdir(exist_ok=False, parents=False)
-
-    # Link the source definitions directory
-    (local_source_def_dir := run_dir / "source_definitions").symlink_to(source_def_dir)
+    run_dir, source_model_ffp = utils.setup_run_dir(
+        output_dir, source_def_dir, site_df
+    )
 
     # Get the IMs & Levels
     sa_periods = (
@@ -50,12 +53,18 @@ def setup_hazard_run(
         if pSA_periods_option is constants.SAPeriodOptions.nshm
         else constants.EXTENDED_SA_PERIODS
     )
-    ims = [common.im.IM.from_str("PGA")] + [
-        common.im.IM(common.im.IMType.pSA, cur_period) for cur_period in sa_periods
+    ims = [common.IM.from_str("PGA")] + [
+        common.IM(common.IMType.pSA, cur_period) for cur_period in sa_periods
     ]
 
+    # Copy the base_base_hazard ini file
+    job_ini_ffp = run_dir / "hazard_job.ini"
+    shutil.copy(
+        constants.RESOURCE_DIR / constants.HAZARD_BASE_JOB_INI_FNAME, job_ini_ffp
+    )
+
     im_levels = {
-        utils.to_oq_im_string(cur_im): (
+        cur_im.oq_str: (
             constants.NSHM_IM_LEVELS
             if im_levels_option is constants.IMLevelOptions.nshm
             else list(
@@ -64,18 +73,6 @@ def setup_hazard_run(
         )
         for cur_im in ims
     }
-
-    # Copy the base_base_hazard ini file & source model xml
-    job_ini_ffp = run_dir / "hazard_job.ini"
-    shutil.copy(constants.RESOURCE_DIR / constants.HAZARD_BASE_JOB_INI_FNAME, job_ini_ffp)
-    source_model_ffp = run_dir / "source_model.xml"
-    shutil.copy(constants.RESOURCE_DIR / constants.BASE_SOURCE_MODEL_FNAME, source_model_ffp)
-
-    # Copy the GMM logic tree
-    shutil.copy(
-        constants.RESOURCE_DIR / constants.GMM_LOGIC_TREE_FNAME,
-        run_dir / constants.GMM_LOGIC_TREE_FNAME,
-    )
 
     # Update the hazard ini file
     with job_ini_ffp.open("r+") as f:
@@ -91,18 +88,51 @@ def setup_hazard_run(
         f.seek(0)
         f.write(base_job_ini)
 
-    # Update the source model xml file
-    with source_model_ffp.open("r+") as f:
-        base_source_model = f.read(-1)
-        base_source_model = base_source_model.replace(
-            "$SOURCE_DIR$", local_source_def_dir.name
-        )
-        f.seek(0)
-        f.write(base_source_model)
-
-    # Write the site file
-    site_df.to_csv(run_dir / "sites.csv", index=False)
+    return job_ini_ffp, ims
 
 
+def get_single_site_hazard_results(calc_id: int, site: NSHMSiteInfo):
+    """
+    Get the hazard results for the given calculation id and site
 
-    return job_ini_ffp
+    Parameters
+    ----------
+    calc_id: int
+        The OQ calculation id
+    site: NSHMSiteInfo
+        The site information
+
+    Returns
+    -------
+    LabelledDataArray:
+        The hazard results
+    """
+    # Get the available IMs
+    with datastore.read(calc_id) as ds:
+        oq_params = ds["oqparam"]
+    im_levels: dict[str, np.ndarray] = dict(oq_params.imtls)
+    ims = list(im_levels.keys())
+
+    result_dict = {}
+    with extract.Extractor(calc_id) as ex:
+        for cur_oq_im_str in ims:
+            cur_oq_result = ex.get(f"hcurves?kind=stats&imt={cur_oq_im_str}")
+
+            cur_im = common.IM.from_oq_str(cur_oq_im_str)
+            cur_hazard_result = common.HazardResult(
+                cur_im, site, pd.DataFrame(
+                data=np.stack(
+                    [
+                        cur_oq_result[cur_stats][0, 0, :]
+                        for cur_stats in cur_oq_result.kind
+                    ],
+                    axis=1,
+                ),
+                index=im_levels[cur_oq_im_str],
+                columns=cur_oq_result.kind,
+            )
+            )
+
+            result_dict[cur_im] =cur_hazard_result
+
+    return result_dict

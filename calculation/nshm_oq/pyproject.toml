@@ -7,11 +7,8 @@ name = "nshm-oq"
 authors = [{name="QuakeCoRE"}]
 description = "A library for running the 2022 NZ NSHM via OpenQuake"
 readme = "README.md"
-requires-python = ">=3.7"
+requires-python = ">=3.11"
 dynamic = ["dependencies", "version"]
-
-#[project.scripts]
-#nshm_db_generator = "nshmdb.scripts.nshm_db_generator:app"
 
 [tool.setuptools.dynamic]
 dependencies = {file = ["requirements.txt"]}

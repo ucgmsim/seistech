@@ -1,13 +1,16 @@
 import numpy as np
 
-from .im import IM, IMType
+from scipy.interpolate import interpolate
+
+from .IM import IM, IMType
+from .HazardResult import HazardResult
 
 
 def get_min_max_im_level(im: IM):
     """Get minimum and maximum for the given im. Values for velocity are
     given on cm/s, acceleration on cm/s^2 and Ds on s
     """
-    if im.is_pSA():
+    if im.is_pSA:
         assert im.period is not None, "No period provided for pSA, this is an error"
         if im.period <= 0.5:
             return 0.005, 10.0
@@ -55,3 +58,50 @@ def get_im_levels(im: IM, n_values: int = 100):
         start=np.log(start), stop=np.log(end), num=n_values, base=np.e
     )
     return im_values
+
+
+def exceedance_to_im(exceedance: float, hazard_result: HazardResult):
+    """
+    Converts the given exceedance rate to an IM value
+
+    Parameters
+    ----------
+    exceedance: float
+    hazard_result: HazardResult
+
+    Returns
+    -------
+    float
+        The IM value corresponding to the given exceedance
+    """
+    return np.exp(
+        interpolate.interp1d(
+            np.log(hazard_result.mean_hazard.values) * -1,
+            np.log(hazard_result.im_levels),
+            kind="linear",
+            bounds_error=True,
+        )(np.log(exceedance) * -1)
+    )
+
+
+def im_to_exceedance(im_value: float, hazard_result: HazardResult):
+    """
+    Convert from IM value to exceedance rate
+
+    Parameters
+    ----------
+    im_value: float
+    hazard_result: HazardResult
+
+    Returns
+    -------
+    float
+    """
+    return np.exp(
+        interpolate.interp1d(
+            np.log(hazard_result.im_levels),
+            np.log(hazard_result.mean_hazard.values),
+            kind="linear",
+            bounds_error=True,
+        )(np.log(im_value))
+    )
