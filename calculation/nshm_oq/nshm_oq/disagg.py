@@ -42,7 +42,7 @@ def setup_disagg_run(
     # Copy the base_base_hazard ini file
     job_ini_ffp = run_dir / "disagg_job.ini"
     shutil.copy(
-        constants.RESOURCE_DIR / constants.HAZARD_BASE_JOB_INI_FNAME, job_ini_ffp
+        constants.RESOURCE_DIR / constants.DISAGG_BASE_JOB_INI_FNAME, job_ini_ffp
     )
 
     # Update the disagg ini file

@@ -37,7 +37,7 @@ def run_single_site_hazard(
     ],
     z1p0: Annotated[
         float,
-        typer.Argument(
+        typer.Option(
             help="Z1.0 at the site of interest, in metres. "
             "If not specified, then it is estimated based on "
             "the Vs30 correlation function used in the NSHM results."
@@ -45,7 +45,7 @@ def run_single_site_hazard(
     ] = None,
     z2p5: Annotated[
         float,
-        typer.Argument(
+        typer.Option(
             help="Z2.5 at the site of interest, in kilometres. "
             "If not specified, then it is estimated based on "
             "the Vs30 correlation function used in the NSHM results."
@@ -141,7 +141,7 @@ def run_single_site_disagg(
     source_def_dir: Annotated[
         Path, typer.Argument(help="Source definitions directory")
     ],
-    rps: Annotated[list[int], typer.Argument(help="Return periods to run disagg for")],
+    rp: Annotated[int, typer.Argument(help="Return period to run disagg for")],
     n_branches: Annotated[
         int,
         typer.Option(
@@ -169,16 +169,24 @@ def run_single_site_disagg(
 
     ims = list(hazard_results.keys())
 
-    # Compute the im-levels for each IM and RP
-    rps = sorted(rps)
+    # # Compute the im-levels for each IM and RP
+    # rps = sorted(rps)
+    # excd_im_levels = {}
+    # for cur_im in ims:
+    #     excd_im_levels[cur_im] = []
+    #     for cur_rp in rps:
+    #         cur_excd = common.utils.rp_to_prob(cur_rp)
+    #         excd_im_levels[cur_im].append(
+    #             common.hazard.exceedance_to_im(cur_excd, hazard_results[cur_im])
+    #         )
+
+    # Compute the im-levels for each IM
     excd_im_levels = {}
     for cur_im in ims:
-        excd_im_levels[cur_im] = []
-        for cur_rp in rps:
-            cur_excd = common.utils.rp_to_prob(cur_rp)
-            excd_im_levels[cur_im].append(
-                common.hazard.exceedance_to_im(cur_excd, hazard_results[cur_im])
-            )
+        cur_excd = common.utils.rp_to_prob(rp)
+        excd_im_levels[cur_im] = (
+            common.hazard.exceedance_to_im(cur_excd, hazard_results[cur_im])
+        )
 
     # Create the site.csv file
     site_df = (
