@@ -473,7 +473,7 @@ def compute_cond_lnIM(
     )
 
 
-def calculate_distance_matrix(stations: Sequence[str], locations_df: pd.DataFrame):
+def calculate_distance_matrix(stations: Sequence[str], locations_df: pd.DataFrame, site_lon_col: str = "lon", site_lat_col: str = "lat"):
     """
     Given a set of stations and their locations (in lat, lon format),
     calculate the matrix containing
@@ -490,12 +490,12 @@ def calculate_distance_matrix(stations: Sequence[str], locations_df: pd.DataFram
     for i, station in enumerate(stations):
         cur_dist, _ = calc_rrup_rjb(
             np.asarray(
-                [[locations_df.loc[station].lon, locations_df.loc[station].lat, 0]]
+                [[locations_df.loc[station, site_lon_col], locations_df.loc[station, site_lat_col], 0]]
             ),
             np.stack(
                 (
-                    locations_df.loc[stations].lon,
-                    locations_df.loc[stations].lat,
+                    locations_df.loc[stations, site_lon_col],
+                    locations_df.loc[stations, site_lat_col],
                     np.zeros(len(stations)),
                 ),
                 axis=1,
