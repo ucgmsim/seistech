@@ -73,8 +73,8 @@ def run_single_site_hazard(
     # Create the site object
     site = nshm_oq.NSHMSiteInfo(
         name,
-        lon,
         lat,
+        lon,
         vs30,
         bool(
             nshm_oq.utils.get_backarc_mask(
@@ -151,6 +151,7 @@ def run_single_site_disagg(
         ),
     ] = None,
 ):
+    """Runs single site disagg based on existing hazard results"""
     # Load the hazard results
     # Bit of a hack, but once we switch to project approach
     # this won't be an issue anymore

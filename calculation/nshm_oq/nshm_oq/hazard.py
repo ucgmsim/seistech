@@ -43,9 +43,7 @@ def setup_hazard_run(
         DataFrame containing the site information
         Required columns: lon, lat, vs30, z1p0, z2p5, backarc
     """
-    run_dir, source_model_ffp = utils.setup_run_dir(
-        output_dir, source_def_dir, site_df
-    )
+    run_dir, source_model_ffp = utils.setup_run_dir(output_dir, source_def_dir, site_df)
 
     # Get the IMs & Levels
     sa_periods = (
@@ -120,19 +118,21 @@ def get_single_site_hazard_results(calc_id: int, site: NSHMSiteInfo):
 
             cur_im = common.IM.from_oq_str(cur_oq_im_str)
             cur_hazard_result = common.HazardResult(
-                cur_im, site, pd.DataFrame(
-                data=np.stack(
-                    [
-                        cur_oq_result[cur_stats][0, 0, :]
-                        for cur_stats in cur_oq_result.kind
-                    ],
-                    axis=1,
+                cur_im,
+                site,
+                pd.DataFrame(
+                    data=np.stack(
+                        [
+                            cur_oq_result[cur_stats][0, 0, :]
+                            for cur_stats in cur_oq_result.kind
+                        ],
+                        axis=1,
+                    ),
+                    index=im_levels[cur_oq_im_str],
+                    columns=cur_oq_result.kind,
                 ),
-                index=im_levels[cur_oq_im_str],
-                columns=cur_oq_result.kind,
-            )
             )
 
-            result_dict[cur_im] =cur_hazard_result
+            result_dict[cur_im] = cur_hazard_result
 
     return result_dict
